@@ -41,6 +41,8 @@
         display: grid;
         grid-template-columns: 100px repeat(7, 1fr) 100px;
         grid-template-rows: repeat(10, 1fr);
+        margin: 0;
+        padding: 0;
         height: 100vh;
         width: 100vw;
     }
@@ -71,7 +73,7 @@
         font-family: somethingfont;
         color: cyan;
         font-size: 50px;
-        -webkit-text-stroke: 1px black;
+        -webkit-text-stroke: 4px black;
         margin-top: 25px;
         white-space: nowrap;
     }
@@ -137,15 +139,22 @@
     .box11 { background-color: #3012E5; font-size: 20px; grid-column: 8; grid-row: 5; }
     .box12 { background-color: #9195DE; font-size: 20px; grid-column: 8; grid-row: 7; }
 
-    /* Animation for .rat-urklipp */
+    
+
+    .box1:hover ~ .rat-urklipp {
+        z-index: 5;
+    }
+
+
     .rat-urklipp {
+        height: auto;
+        width: 100%;
         z-index: -2;
-        height: 500px;
-        width: 500px;
-        grid-column: 3/6;
-        grid-row: 3/6;
+        grid-column: 3/7;
+        grid-row: 3/7;
         opacity: 0;
-        object-fit: cover;
+        border: 5px solid black;
+        object-fit: contain;
     }
 
     @keyframes ghaziri-slide {
@@ -172,82 +181,98 @@
 /* Small screen styles (max-width: 600px) */
 @media (max-width: 600px) {
 
-    /* Hide specific boxes */
-    .box5, .box6, .box7, .box8, .box9, .box10, .box11, .box12 {
-        display: none;
-    }
+/* General Styles */
+body {
+    padding: 0;
+    margin: 0;
+}
 
-    .box1, .box2, .box3, .box4 {
-        margin-top: 15px;
-    }
+/* Grid Container */
+.container {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    grid-template-rows: repeat(8, 1fr);
+    height: 100vh;
+    width: 100vw;
+    overflow: hidden;
+}
 
-    /* Body styles */
-    body {
-        overflow: hidden;
-        padding: 0;
-        margin: 0;
-    }
+/* Gradient Background */
+.gradient-background {
+    position: fixed;
+    grid-column: 1/4;
+    grid-row: 1/8;
+    z-index: -5;
+    height: 100vh;
+    width: 100vw;
+    background: rgb(114,0,168);
+    background: linear-gradient(180deg, rgba(114,0,168,1) 21%, rgba(14,22,116,1) 55%, rgba(0,0,0,1) 100%);
+}
 
-    /* Container for small screens */
-    .container {
-        display: grid;
-        grid-template-columns: repeat(4, 1fr);
-        grid-template-rows: repeat(8, 1fr);
-        height: 100vh;
-        width: 100vw;
-        overflow: hidden;
-    }
+/* Hidden Elements */
+.box5, .box6, .box7, .box8, .box9, .box10, .box11, .box12, .rat-urklipp, .box4 {
+    display: none;
+}
 
-    /* Background for small screens */
-    .background1 {
-        z-index: 0;
-        grid-column: 1/4;
-        grid-row: 1/8;
-        overflow: visible;
-        animation: Backslide 35s linear infinite;
-    }
+.name {
+    grid-column: 1;
+    grid-row: 2;
+    font-size: 25px;
+}
 
-    /* Heading styles for small screens */
-    .h1 {
-        grid-column: 1;
-        grid-row: 1;
-        margin-left: 50px;
-        font-size: 40px;
-        width: 300px;
-        margin-top: 50px;
-        font-family: sans-serif;
-        color: #00E0FF;
-        z-index: 1;
-    }
 
-    /* Name element for small screens */
-    .name {
-        display: flex;
-        justify-content: left;
-        margin-top: -10px;
-        margin-left: 53px;
-        grid-column: 1;
-        grid-row: 2;
-        font-family: sans-serif;
-        font-size: 20px;
-        z-index: 1;
-        color: #00E0FF;
-    }
+/* Heading */
+.h1 {
+    -webkit-text-stroke: 3px black;
+    margin-top: 40px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    grid-column: 1;
+    grid-row: 1;
+    font-size: 45px;
+    color: cyan;
+    font-family: somethingfont;
+    white-space: nowrap;
+    margin-left: 35px;
+    
+}
 
-    /* Keyframe animation for background */
-    @keyframes Backslide {
-        0% { transform: translateX(0); }
-        50% { transform: translateX(-75%); }
-        100% { transform: translateX(0); }
-    }
+/* Box Styles */
+.box1, .box2, .box3 {
+    margin-top: 100px;
+    display: flex;
+    grid-column: 1;
+    width: 233px;
+    height: 130px;
+    border-radius: 11px;
+    border: 3px solid white;
+    justify-content: center;
+    align-items: center;
+    text-decoration: none;
+    font-family: sans-serif;
+    color: white;
+    margin-left: 35px;
+}
 
-    /* Gradient background for small screens */
-    .gradient-background {
-        position: fixed;
-        z-index: -5;
-        height: 100vh;
-        width: 100vw;
-        background: rgb(114,0,168);
-        background: linear-gradient(120deg, rgba(114,0,168,1) 21%, rgba(14,22,116,1) 55%, rgba(0,0,0,1) 100%);
-    }
+.box1 {
+    grid-row: 4;
+    background-color: #B503E2;
+    font-size: 45px;
+}
+
+.box2 {
+    grid-row: 5;
+    background-color: #8D03E2;
+    font-size: 20px;
+}
+
+.box3 {
+    grid-row: 6;
+    background-color: #7303E2;
+    font-size: 20px;
+}
+
+
+
 }
